@@ -11,8 +11,15 @@
 template<typename T>
 class InsertionSort
 {
+    static void swap(T& a, T& b)
+    {
+        T tmp = a;
+        a = b;
+        b = tmp;
+    }
+
 public:
-    static void sort(T* list, int length)
+    static void sort(T* list, const int length, bool (* cmpFunc)(const T& a, const T& b))
     {
         for (int i = 0; i < length - 1; ++i)
         {
@@ -21,11 +28,9 @@ public:
 
             // Insert next element to the correct position
             // at the beginning of the array.
-            while (j > 0 && list[j - 1] > list[j])
+            while (j > 0 && (*cmpFunc)(list[j], list[j - 1]))
             {
-                T tmp = list[j];
-                list[j] = list[j - 1];
-                list[j - 1] = tmp;
+                swap(list[j], list[j - 1]);
                 --j;
             }
         }

@@ -11,8 +11,15 @@
 template<typename T>
 class BubbleSort
 {
+    static void swap(T& a, T& b)
+    {
+        T tmp = a;
+        a = b;
+        b = tmp;
+    }
+
 public:
-    static void sort(T* list, int length)
+    static void sort(T* list, const int length, bool (* cmpFunc)(const T& a, const T& b))
     {
         bool swapped;
 
@@ -22,11 +29,9 @@ public:
 
             for (int i = 1; i < length; ++i)
             {
-                if (list[i - 1] > list[i])
+                if ((*cmpFunc)(list[i], list[i - 1]))
                 {
-                    T tmp = list[i - 1];
-                    list[i - 1] = list[i];
-                    list[i] = tmp;
+                    swap(list[i], list[i - 1]);
                     swapped = true;
                 }
             }

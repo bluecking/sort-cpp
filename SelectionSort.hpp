@@ -11,8 +11,15 @@
 template<typename T>
 class SelectionSort
 {
+    static void swap(T& a, T& b)
+    {
+        T tmp = a;
+        a = b;
+        b = tmp;
+    }
+
 public:
-    static void sort(T* list, int length)
+    static void sort(T* list, const int length, bool (* cmpFunc)(const T& a, const T& b))
     {
         for (int i = 0; i < length - 1; ++i)
         {
@@ -22,18 +29,16 @@ public:
             // Check if the remaining elements are smaller than the initial minimum
             for (int j = i + 2; j < length; ++j)
             {
-                if (list[j] < *minimum)
+                if ((*cmpFunc)(list[j], *minimum))
                 {
                     minimum = list + j;
                 }
             }
 
             // Only swap selection with minimum, if selection is greater
-            if (list[i] > *minimum)
+            if ((*cmpFunc)(*minimum, list[i]))
             {
-                T tmp = list[i];
-                list[i] = *minimum;
-                *minimum = tmp;
+                swap(*minimum, list[i]);
             }
         }
     }
