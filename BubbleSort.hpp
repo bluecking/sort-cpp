@@ -2,7 +2,7 @@
  * BubbleSort.hpp
  *
  *  @date   09.03.16
- *  @author Benjamin Lücking <bluecking@uos.de>
+ *  @author Benjamin Lücking <mail@bluecking.de>
  */
 
 #ifndef SORTING_ALGORITHMS_BUBBLESORT_HPP
