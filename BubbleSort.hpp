@@ -24,7 +24,7 @@ public:
             {
                 if (list[i - 1] > list[i])
                 {
-                    int tmp = list[i - 1];
+                    T tmp = list[i - 1];
                     list[i - 1] = list[i];
                     list[i] = tmp;
                     swapped = true;
